@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<hmtl>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Snake Game - Mario Granada</title>
+    </head>
+
+    <body>
+        <section class="canvas-wrapper">
+            <canvas class="canvas" height="300" width="300" style="background-color: #e0e0e0;"></canvas>
+        </section>
+        <section class="form-wrapper">
+            <div>
+                <p>
+                    Score: <span class="score-value">0</span>
+                </p>
+            </div>
+            <form>
+                <div class="fieldset">
+                    <label>Speed</label>
+                    <input type="text" />
+                </div>
+                <div class="fieldset">
+                    <label>Canvas Color</label>
+                    <input type="color" />
+                </div>
+                <div class="fieldset">
+                    <label>Snake Color</label>
+                    <input type="color" />
+                </div>
+                <div class="fieldset">
+                    <label>Food Color</label>
+                    <input type="color" />
+                </div>
+                <div class="fieldset">
+                    <button type="button" onclick="startGame()">start</button>
+
+                </div>
+                <div class="fieldset">
+                    <button type="button">stop</button>
+                </div>
+
+                <div class="fieldset">
+                    <button type="button">clear</button>
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <small> Author: Mario Granada</small>
+        </footer>
+
+
+        <script type="application/javascript" src="./snake.js"></script>
+        <script type="application/javascript" src="./food.js"></script>
+        <script type="application/javascript" src="./controls.js"></script>
+        <script type="application/javascript" src="./main.js"></script>
+    </body>
+</hmtl>
