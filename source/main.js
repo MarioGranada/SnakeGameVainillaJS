@@ -13,7 +13,7 @@ let food;
 
     food.pickLocation();
 
-    window.setInterval(() => {
+    const snakeInterval = window.setInterval(() => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         food.draw();
         snake.update();
@@ -21,7 +21,10 @@ let food;
 
         if(snake.eat(food)) {
             food.pickLocation();
+            updateScore()
         }
+
+        snake.checkCollision() && clearInterval(snakeInterval);
     }, 250)
 })();
 
@@ -33,4 +36,8 @@ window.addEventListener('keydown', event => {
 
 function startGame() {
     console.log('in here start game')
+}
+
+function updateScore() {
+    document.querySelector('.score-value').innerHTML = snake.total * 100;
 }

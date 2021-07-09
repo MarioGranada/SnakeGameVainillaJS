@@ -13,7 +13,7 @@ function Snake () {
     this.ySpeed = 0;
     this.total = 0;
     this.tail=[];
-    this.currentDirection = this.currentDirection = DIRECTIONS.RIGHT;
+    this.currentDirection = DIRECTIONS.RIGHT;
 
     
 
@@ -94,5 +94,14 @@ function Snake () {
         isEating && this.total++;
         return isEating
 
+    }
+
+    this.checkCollision = function () {
+        for(var i=0; i < this.tail.length; i++ ) {
+            if(this.x === this.tail[i].x && this.y === this.tail[i].y){
+                console.log('colliding');
+            }
+            return this.x === this.tail[i].x && this.y === this.tail[i].y
+        }
     }
 }
