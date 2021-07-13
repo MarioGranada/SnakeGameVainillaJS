@@ -39,10 +39,10 @@ function Snake () {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
-        if(this.x > canvas.width) {
+        if(this.x > canvas.width - 1) {
             this.x = 0;
         }
-        if(this.y > canvas.height) {
+        if(this.y > canvas.height - 1 ) {
             this.y = 0;
         }
         if(this.x < 0) {
