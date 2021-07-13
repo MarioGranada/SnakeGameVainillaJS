@@ -8,7 +8,7 @@ const DIRECTIONS = {
 
 function Snake () {
     this.x = 0;
-    this.y = 0;
+    this.y = 30;
     this.xSpeed = scale * 1;
     this.ySpeed = 0;
     this.total = 0;
