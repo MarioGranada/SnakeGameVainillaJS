@@ -20,7 +20,7 @@ function Snake () {
     this.draw = function() {
         context.fillStyle = '#FFF';
 
-        this.tail.map((item, index)=> {
+        this.tail.map(item=> {
             context.fillRect(item.x, item.y, scale, scale);
         })
         context.fillRect(this.x, this.y, scale, scale);
@@ -51,7 +51,6 @@ function Snake () {
         if(this.y < 0) {
             this.y = canvas.height;
         }
-
     }
 
     this.changeDirection = function(newDirection) {
@@ -97,11 +96,8 @@ function Snake () {
     }
 
     this.checkCollision = function () {
-        for(var i=0; i < this.tail.length; i++ ) {
-            if(this.x === this.tail[i].x && this.y === this.tail[i].y){
-                console.log('colliding');
-            }
-            return this.x === this.tail[i].x && this.y === this.tail[i].y
-        }
+        return !!this.tail.find(item => {
+            return this.x === item.x && this.y === item.y
+        })
     }
 }

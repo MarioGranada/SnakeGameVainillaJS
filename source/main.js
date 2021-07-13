@@ -24,7 +24,11 @@ let food;
             updateScore()
         }
 
-        snake.checkCollision() && clearInterval(snakeInterval);
+        if(snake.checkCollision()) {
+            clearInterval(snakeInterval);
+        }
+
+        
     }, 250)
 })();
 
