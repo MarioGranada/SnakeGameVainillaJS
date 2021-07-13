@@ -54,27 +54,16 @@ function updateScore() {
 }
 
 function drawEdges(){
-    // Top Edge
+    context.fillStyle = "black";
+    // Top/Bottom Edge
     for(let i = scale; i < canvasRightEdge - scale; i++) {
-        context.fillStyle = "black";
         context.fillRect(i, canvasTopEdge, scale, scale);
-    }
-
-    // Right Edge
-    for(let i = 0; i < canvasBottomEdge; i++) {
-        context.fillStyle = "black";
-        context.fillRect(canvasRightEdge - scale, i, scale, scale);
-    }
-
-    // Bottom Edge
-    for(let i = scale; i < canvasRightEdge - scale; i++) {
-        context.fillStyle = "black";
         context.fillRect(i, canvasBottomEdge - scale, scale, scale);
     }
 
-    // Left Edge
-    for(let i = 0; i < canvasBottomEdge; i++) {
-        context.fillStyle = "black";
+    // Left/Right Edge
+    for(let i = 0; i < canvasBottomEdge; i++) {   
+        context.fillRect(canvasRightEdge - scale, i, scale, scale);
         context.fillRect(canvasLeftEdge, i, scale, scale);
     }
 }
