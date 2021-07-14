@@ -6,8 +6,8 @@ const DIRECTIONS = {
     RIGHT: 'RIGHT'
 }
 
-function Snake () {
-    this.x = 0;
+function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge) {
+    this.x = 30;
     this.y = 30;
     this.xSpeed = scale * 1;
     this.ySpeed = 0;
@@ -15,7 +15,10 @@ function Snake () {
     this.tail=[];
     this.currentDirection = DIRECTIONS.RIGHT;
 
-    
+    this.topEdge = canvasTopEdge;
+    this.rightEdge = canvasRightEdge;
+    this.bottomEdge = canvasBottomEdge;
+    this.leftEdge = canvasLeftEdge;
 
     this.draw = function() {
         context.fillStyle = '#FFF';
@@ -40,16 +43,16 @@ function Snake () {
         this.y += this.ySpeed;
 
         if(this.x > canvas.width - 1) {
-            this.x = 0;
+            this.x = canvasLeftEdge;
         }
         if(this.y > canvas.height - 1 ) {
-            this.y = 0;
+            this.y = canvasTopEdge;
         }
         if(this.x < 0) {
-            this.x = canvas.width;
+            this.x = canvasRightEdge;
         }
         if(this.y < 0) {
-            this.y = canvas.height;
+            this.y = canvasBottomEdge;
         }
     }
 
@@ -95,9 +98,20 @@ function Snake () {
 
     }
 
-    this.checkCollision = function () {
+    this.checkCollision = function (withEdges) {
+        return this.checkSelfCollision() || (withEdges && this.checkEdgeCollision())
+    }
+
+    this.checkSelfCollision = function () {
         return !!this.tail.find(item => {
             return this.x === item.x && this.y === item.y
         })
+    }
+
+    this.checkEdgeCollision = function () {
+        return this.x === this.leftEdge || 
+            this.x === this.rightEdge || 
+            this.y === this.topEdge || 
+            this.y === this.bottomEdge;
     }
 }

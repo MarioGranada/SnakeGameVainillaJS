@@ -11,9 +11,10 @@ const canvasBottomEdge = canvas.height;
 
 let snake;
 let food;
+let withBorders = false;
 
 (function setup() {
-    snake = new Snake();
+    snake = new Snake(canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge);
     food = new Food();
 
     food.pickLocation();
@@ -22,7 +23,7 @@ let food;
 
     const snakeInterval = window.setInterval(() => {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        this.drawEdges();
+        withBorders && this.drawEdges();
         food.draw();
         snake.update();
         snake.draw();
@@ -32,7 +33,7 @@ let food;
             updateScore()
         }
 
-        if(snake.checkCollision()) {
+        if(snake.checkCollision(withBorders)) {
             clearInterval(snakeInterval);
         }
         
