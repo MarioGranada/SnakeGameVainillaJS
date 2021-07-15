@@ -13,7 +13,7 @@ let snake;
 let food;
 let withBorders = false;
 
-(function setup() {
+function setup() {
     snake = new Snake(canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge);
     food = new Food();
 
@@ -30,7 +30,7 @@ let withBorders = false;
 
         if(snake.eat(food)) {
             food.pickLocation();
-            updateScore()
+            this.updateScore()
         }
 
         if(snake.checkCollision(withBorders)) {
@@ -38,20 +38,21 @@ let withBorders = false;
         }
         
     }, 250)
-})();
+};
 
 
 window.addEventListener('keydown', event => {
     const newDirection = event.key.replace('Arrow', '');
-    snake.changeDirection(newDirection);
+    snake && snake.changeDirection(newDirection);
 });
 
 function startGame() {
-    console.log('in here start game')
+    formValues();
+    this.setup();
 }
 
 function updateScore() {
-    document.querySelector('.score-value').innerHTML = snake.total * 100;
+    document.querySelector('.scoreValue').innerHTML = snake.total * 100;
 }
 
 function drawEdges(){

@@ -13,36 +13,52 @@
         <section class="form-wrapper">
             <div>
                 <p>
-                    Score: <span class="score-value">0</span>
+                    Score: <span class="scoreValue">0</span>
                 </p>
             </div>
             <form>
                 <div class="fieldset">
                     <label>Speed</label>
-                    <input type="text" />
+                    <input type="number" class="input inputNumber speed" />
                 </div>
                 <div class="fieldset">
-                    <label>Canvas Color</label>
-                    <input type="color" />
+                    <label>Board Color</label>
+                    <input type="color" class="input inputColor canvasColor " />
+                </div>
+                <div class="fieldset">
+                    <label>Board Width</label>
+                    <input type="number" class="input inputNumber canvasWidth" />
+                </div>
+                <div class="fieldset">
+                    <label>Board Height</label>
+                    <input type="number" class="input inputNumber canvasHeight" />
+                </div>
+                <div class="fieldset">
+                    <label>Board Scale</label>
+                    <input type="number" class="input inputNumber canvasScale" />
+                </div>
+                <div class="fieldset">
+                    <label>With borders?</label>
+                    <input type="checkbox" class="input input-checkbox withBorders" />
                 </div>
                 <div class="fieldset">
                     <label>Snake Color</label>
-                    <input type="color" />
+                    <input type="color" class="input inputColor snakeColor" />
                 </div>
                 <div class="fieldset">
                     <label>Food Color</label>
-                    <input type="color" />
+                    <input type="color" class="input inputColor foodColor" />
                 </div>
                 <div class="fieldset">
-                    <button type="button" onclick="startGame()">start</button>
+                    <button type="button" class="button startGame" onclick="startGame()">start</button>
 
                 </div>
                 <div class="fieldset">
-                    <button type="button">stop</button>
+                    <button type="button" class="button stopGame">stop</button>
                 </div>
 
                 <div class="fieldset">
-                    <button type="button">clear</button>
+                    <button type="button" class="button clearForm">clear</button>
                 </div>
             </form>
         </section>
