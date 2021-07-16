@@ -24,7 +24,7 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
 
-    this.color=color
+    this.color = color
 
     this.draw = function() {
         context.fillStyle = this.color;
@@ -104,16 +104,16 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
     }
 
     this.checkCollision = function (withEdges) {
-        return this.checkSelfCollision() || (withEdges && this.checkEdgeCollision())
+        return this.checkCollisionWithSelf() || (withEdges && this.checkCollisionWithEdge())
     }
 
-    this.checkSelfCollision = function () {
+    this.checkCollisionWithSelf = function () {
         return !!this.tail.find(item => {
             return this.x === item.x && this.y === item.y
         })
     }
 
-    this.checkEdgeCollision = function () {
+    this.checkCollisionWithEdge = function () {
         return this.x === this.leftEdge || 
             this.x === this.rightEdge || 
             this.y === this.topEdge || 
