@@ -6,10 +6,11 @@ const DIRECTIONS = {
     RIGHT: 'RIGHT'
 }
 
-function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge) {
+function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge, canvasWidth, canvasHeight, scale, color) {
     this.x = 30;
     this.y = 30;
-    this.xSpeed = scale * 1;
+    this.scale = scale;
+    this.xSpeed = this.scale * 1;
     this.ySpeed = 0;
     this.total = 0;
     this.tail=[];
@@ -20,13 +21,18 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
     this.bottomEdge = canvasBottomEdge;
     this.leftEdge = canvasLeftEdge;
 
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+
+    this.color=color
+
     this.draw = function() {
-        context.fillStyle = '#FFF';
+        context.fillStyle = this.color;
 
         this.tail.map(item=> {
-            context.fillRect(item.x, item.y, scale, scale);
+            context.fillRect(item.x, item.y, this.scale, this.scale);
         })
-        context.fillRect(this.x, this.y, scale, scale);
+        context.fillRect(this.x, this.y, this.scale, this.scale);
     }
 
     this.update = function() {
@@ -34,18 +40,17 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
             if(index < this.tail.length - 1){
                 this.tail[index] = this.tail[index+1];
             } 
-        })
-
+        });
 
         this.tail[this.total - 1] = {x: this.x, y: this.y};
 
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
-        if(this.x > canvas.width - 1) {
+        if(this.x > this.canvasWidth - 1) {
             this.x = canvasLeftEdge;
         }
-        if(this.y > canvas.height - 1 ) {
+        if(this.y > this.canvasHeight - 1 ) {
             this.y = canvasTopEdge;
         }
         if(this.x < 0) {
@@ -61,13 +66,13 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
             case DIRECTIONS.UP: 
                 if(this.currentDirection !== DIRECTIONS.DOWN) {
                     this.xSpeed = 0;
-                    this.ySpeed = -scale * 1;
+                    this.ySpeed = -this.scale * 1;
                     this.currentDirection = DIRECTIONS.UP;
                 }
                 break;
             case DIRECTIONS.RIGHT:
                 if(this.currentDirection !== DIRECTIONS.LEFT) {
-                    this.xSpeed = scale * 1;
+                    this.xSpeed = this.scale * 1;
                     this.ySpeed = 0;
                     this.currentDirection = DIRECTIONS.RIGHT;
                 }
@@ -75,13 +80,13 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
             case DIRECTIONS.DOWN:
                 if(this.currentDirection !== DIRECTIONS.UP) {
                     this.xSpeed = 0;
-                    this.ySpeed = scale * 1;
+                    this.ySpeed = this.scale * 1;
                     this.currentDirection = DIRECTIONS.DOWN;
                 }
                 break;
             case DIRECTIONS.LEFT: 
                 if(this.currentDirection !== DIRECTIONS.RIGHT) {
-                    this.xSpeed = -scale * 1;
+                    this.xSpeed = -this.scale * 1;
                     this.ySpeed = 0;
                     this.currentDirection = DIRECTIONS.LEFT;
                 }

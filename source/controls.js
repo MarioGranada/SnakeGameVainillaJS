@@ -8,14 +8,18 @@ const formValues = () =>{
         'canvasWidth',
         'canvasHeight',
         'canvasScale',
-        'withBorders',
         'snakeColor',
-        'foodColor'
+        'foodColor',
+        'bordersColor'
     ];
 
     formInputs.map(item => {
         valuesObj = {...valuesObj, [item]: getElementByClassname(item).value};
     });
+
+    valuesObj = {...valuesObj, 'withBorders': getElementByClassname('withBorders').checked};
+
+    console.log('in here oe', valuesObj);
 
     return valuesObj;
 }
