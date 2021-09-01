@@ -47,18 +47,20 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
-        if(this.x > this.canvasWidth - 1) {
-            this.x = canvasLeftEdge;
+        if(this.x >= this.rightEdge) {
+            this.x = this.leftEdge;
         }
-        if(this.y > this.canvasHeight - 1 ) {
-            this.y = canvasTopEdge;
+        if(this.y >= this.bottomEdge ) {
+            this.y = this.topEdge;
         }
-        if(this.x < 0) {
-            this.x = canvasRightEdge;
+        if(this.x <= this.leftEdge) {
+            this.x = this.rightEdge;
         }
-        if(this.y < 0) {
-            this.y = canvasBottomEdge;
+        if(this.y <= this.topEdge) {
+            this.y = this.bottomEdge;
         }
+
+        console.log('in here directions', {xSpeed: this.xSpeed, ySpeed: this.ySpeed, x: this.x, y: this.y})
     }
 
     this.changeDirection = function(newDirection) {

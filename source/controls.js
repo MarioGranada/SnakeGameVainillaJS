@@ -19,7 +19,7 @@ const formValues = () =>{
 
     valuesObj = {...valuesObj, 'withBorders': getElementByClassname('withBorders').checked};
 
-    console.log('in here oe', valuesObj);
+    // console.log('in here oe', valuesObj);
 
     return valuesObj;
 }

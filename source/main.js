@@ -12,8 +12,11 @@ function setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canva
 
     console.log(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor);
 
-    canvas.width = parseInt(canvasWidth);
-    canvas.height = parseInt(canvasHeight);
+    canvasWidth = parseInt(canvasWidth);
+    canvasHeight = parseInt(canvasHeight);
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
     canvas.style['background-color'] = canvasColor;
     
     const canvasLeftEdge = 0;
