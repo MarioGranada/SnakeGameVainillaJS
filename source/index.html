@@ -20,23 +20,23 @@
             <form>
                 <div class="fieldset">
                     <label>Speed</label>
-                    <input type="number" class="input inputNumber speed" />
+                    <input type="number" placeholder="default to 250" class="input inputNumber speed" />
                 </div>
                 <div class="fieldset">
                     <label>Board Color</label>
-                    <input type="color" class="input inputColor canvasColor " />
+                    <input type="color" value="#FF4000" class="input inputColor canvasColor " />
                 </div>
                 <div class="fieldset">
                     <label>Board Width</label>
-                    <input type="number" class="input inputNumber canvasWidth" />
+                    <input type="number" placeholder="default 500" class="input inputNumber canvasWidth" />
                 </div>
                 <div class="fieldset">
                     <label>Board Height</label>
-                    <input type="number" class="input inputNumber canvasHeight" />
+                    <input type="number" placeholder="default 500" class="input inputNumber canvasHeight" />
                 </div>
                 <div class="fieldset">
                     <label>Board Scale</label>
-                    <input type="number" class="input inputNumber canvasScale" />
+                    <input type="number" placeholder="10" class="input inputNumber canvasScale" />
                 </div>
                 <div class="fieldset">
                     <label>With borders?</label>
@@ -44,11 +44,11 @@
                 </div>
                 <div class="fieldset">
                     <label>Snake Color</label>
-                    <input type="color" class="input inputColor snakeColor" />
+                    <input type="color" value="#0FEF0B" class="input inputColor snakeColor" />
                 </div>
                 <div class="fieldset">
                     <label>Food Color</label>
-                    <input type="color" class="input inputColor foodColor" />
+                    <input type="color" value="#D9F505" class="input inputColor foodColor" />
                 </div>
                 <div class="fieldset">
                     <label>Borders Color</label>
@@ -59,7 +59,7 @@
 
                 </div>
                 <div class="fieldset">
-                    <button type="button" class="button stopGame">stop</button>
+                    <button type="button" class="button stopGame" onclick="stopGame()">stop</button>
                 </div>
 
                 <div class="fieldset">

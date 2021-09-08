@@ -17,9 +17,5 @@ const formValues = () =>{
         valuesObj = {...valuesObj, [item]: getElementByClassname(item).value};
     });
 
-    valuesObj = {...valuesObj, 'withBorders': getElementByClassname('withBorders').checked};
-
-    // console.log('in here oe', valuesObj);
-
-    return valuesObj;
+    return {...valuesObj, 'withBorders': getElementByClassname('withBorders').checked};
 }

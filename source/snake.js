@@ -6,10 +6,23 @@ const DIRECTIONS = {
     RIGHT: 'RIGHT'
 }
 
-function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge, canvasWidth, canvasHeight, scale, color) {
+function Snake (props) {
+    const {
+        canvasTopEdge,
+        canvasRightEdge,
+        canvasBottomEdge,
+        canvasLeftEdge,
+        canvasWidth,
+        canvasHeight,
+        canvasScale,
+        color
+    } = props;
+
+    console.log('in here props', props);
+
     this.x = 30;
     this.y = 30;
-    this.scale = scale;
+    this.scale = canvasScale;
     this.xSpeed = this.scale * 1;
     this.ySpeed = 0;
     this.total = 0;
@@ -24,7 +37,7 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
 
-    this.color = color
+    this.color = color;
 
     this.draw = function() {
         context.fillStyle = this.color;
@@ -49,17 +62,20 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
 
         if(this.x >= this.rightEdge) {
             this.x = this.leftEdge;
+            return;
         }
-        if(this.y >= this.bottomEdge ) {
+        if(this.y === this.bottomEdge ) {
             this.y = this.topEdge;
+            return;
         }
-        if(this.x <= this.leftEdge) {
+        if(this.x < this.leftEdge) {
             this.x = this.rightEdge;
+            return;
         }
-        if(this.y <= this.topEdge) {
+        if(this.y < this.topEdge) {
             this.y = this.bottomEdge;
+            return;
         }
-
         console.log('in here directions', {xSpeed: this.xSpeed, ySpeed: this.ySpeed, x: this.x, y: this.y})
     }
 
@@ -116,9 +132,9 @@ function Snake (canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge
     }
 
     this.checkCollisionWithEdge = function () {
-        return this.x === this.leftEdge || 
-            this.x === this.rightEdge || 
-            this.y === this.topEdge || 
-            this.y === this.bottomEdge;
+        return this.x === this.leftEdge - this.scale || 
+            this.x === this.rightEdge - this.scale || 
+            this.y === this.topEdge - this.scale || 
+            this.y === this.bottomEdge - this.scale;
     }
 }

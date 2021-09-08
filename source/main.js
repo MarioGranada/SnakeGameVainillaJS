@@ -2,15 +2,26 @@
 
 let snake;
 let food;
-// let withBorders = false;
-// let scate;
 let context;
+let snakeInterval;
 
-function setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor, snakeColor, foodColor, bordersColor) {
+function setup(setupProps) {
+    let {
+        speed,
+        canvasScale,
+        canvasWidth,
+        canvasHeight,
+        withBorders,
+        canvasColor,
+        snakeColor,
+        foodColor,
+        bordersColor
+    } = setupProps;
+
     const canvas = document.querySelector('.canvas');
     context = canvas.getContext('2d');
 
-    console.log(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor);
+    console.log(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor, snakeColor, foodColor,bordersColor);
 
     canvasWidth = parseInt(canvasWidth);
     canvasHeight = parseInt(canvasHeight);
@@ -24,14 +35,31 @@ function setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canva
     const canvasTopEdge = 0;
     const canvasBottomEdge = canvasHeight;
 
-    snake = new Snake(canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge, canvasWidth, canvasHeight, canvasScale, snakeColor);
-    food = new Food(canvasScale, canvasWidth, canvasHeight, foodColor);
+    snake = new Snake({
+        canvasTopEdge, 
+        canvasRightEdge, 
+        canvasBottomEdge, 
+        canvasLeftEdge, 
+        canvasWidth, 
+        canvasHeight, 
+        canvasScale, 
+        color: snakeColor
+    });
+
+    food = new Food({scale: canvasScale, canvasWidth, canvasHeight, color: foodColor});
 
     food.pickLocation();    
 
-    const snakeInterval = window.setInterval(() => {
+    this.snakeInterval = window.setInterval(() => {
         context.clearRect(0, 0, canvas.width, canvas.height);
-        withBorders && this.drawEdges(canvasScale, canvasTopEdge, canvasRightEdge, canvasBottomEdge, canvasLeftEdge, bordersColor);
+        withBorders && this.drawEdges(
+            canvasScale,
+            canvasTopEdge,
+            canvasRightEdge,
+            canvasBottomEdge,
+            canvasLeftEdge,
+            bordersColor
+        );
         food.draw();
         snake.update();
         snake.draw();
@@ -42,7 +70,7 @@ function setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canva
         }
 
         if(snake.checkCollision(withBorders)) {
-            clearInterval(snakeInterval);
+            this.stopGame();
         }
         
     }, parseInt(speed))
@@ -50,14 +78,41 @@ function setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canva
 
 
 window.addEventListener('keydown', event => {
+    event.preventDefault();
     const newDirection = event.key.replace('Arrow', '');
     snake && snake.changeDirection(newDirection);
 });
 
 function startGame() {
-    const {speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor, snakeColor, foodColor, bordersColor} = formValues();
+    const {
+        speed,
+        canvasScale,
+        canvasWidth,
+        canvasHeight,
+        withBorders,
+        canvasColor,
+        snakeColor,
+        foodColor,
+        bordersColor
+    } = formValues();
+
+    const gameValues = {
+        speed: speed || 250,
+        canvasScale: canvasScale || 10,
+        canvasWidth: canvasWidth || 500,
+        canvasHeight: canvasHeight || 500,
+        withBorders: withBorders || false,
+        canvasColor: canvasColor ||  "#FFF000",
+        snakeColor: snakeColor || "#0FEF0B",
+        foodColor: foodColor || "#D9F505",
+        bordersColor: bordersColor || "#000000"
+    }
     
-    this.setup(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor, snakeColor, foodColor, bordersColor);
+    this.setup(gameValues);
+}
+
+function stopGame() {
+    clearInterval(this.snakeInterval);
 }
 
 function updateScore() {
