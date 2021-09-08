@@ -8,31 +8,29 @@ const DIRECTIONS = {
 
 function Snake (props) {
     const {
-        canvasTopEdge,
-        canvasRightEdge,
-        canvasBottomEdge,
-        canvasLeftEdge,
+        topEdge,
+        rightEdge,
+        bottomEdge,
+        leftEdge,
         canvasWidth,
         canvasHeight,
-        canvasScale,
+        scale,
         color
     } = props;
 
-    console.log('in here props', props);
-
     this.x = 30;
     this.y = 30;
-    this.scale = canvasScale;
+    this.scale = scale;
     this.xSpeed = this.scale * 1;
     this.ySpeed = 0;
     this.total = 0;
     this.tail=[];
     this.currentDirection = DIRECTIONS.RIGHT;
 
-    this.topEdge = canvasTopEdge;
-    this.rightEdge = canvasRightEdge;
-    this.bottomEdge = canvasBottomEdge;
-    this.leftEdge = canvasLeftEdge;
+    this.topEdge = topEdge;
+    this.rightEdge = rightEdge;
+    this.bottomEdge = bottomEdge;
+    this.leftEdge = leftEdge;
 
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
@@ -76,7 +74,6 @@ function Snake (props) {
             this.y = this.bottomEdge;
             return;
         }
-        console.log('in here directions', {xSpeed: this.xSpeed, ySpeed: this.ySpeed, x: this.x, y: this.y})
     }
 
     this.changeDirection = function(newDirection) {

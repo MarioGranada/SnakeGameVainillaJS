@@ -21,8 +21,6 @@ function setup(setupProps) {
     const canvas = document.querySelector('.canvas');
     context = canvas.getContext('2d');
 
-    console.log(speed, canvasScale, canvasWidth, canvasHeight, withBorders, canvasColor, snakeColor, foodColor,bordersColor);
-
     canvasWidth = parseInt(canvasWidth);
     canvasHeight = parseInt(canvasHeight);
 
@@ -36,17 +34,22 @@ function setup(setupProps) {
     const canvasBottomEdge = canvasHeight;
 
     snake = new Snake({
-        canvasTopEdge, 
-        canvasRightEdge, 
-        canvasBottomEdge, 
-        canvasLeftEdge, 
+        topEdge: canvasTopEdge, 
+        rightEdge: canvasRightEdge, 
+        bottomEdge: canvasBottomEdge, 
+        leftEdge: canvasLeftEdge, 
         canvasWidth, 
         canvasHeight, 
-        canvasScale, 
+        scale: canvasScale, 
         color: snakeColor
     });
 
-    food = new Food({scale: canvasScale, canvasWidth, canvasHeight, color: foodColor});
+    food = new Food({
+        scale: canvasScale,
+        canvasWidth,
+        canvasHeight,
+        color: foodColor
+    });
 
     food.pickLocation();    
 
