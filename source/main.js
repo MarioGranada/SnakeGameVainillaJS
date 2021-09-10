@@ -99,8 +99,6 @@ function startGame() {
         withBorders
     } = formValues();
 
-    // console.log('gameDefaults', gameDefaults, formValues());
-
     const gameValues = {
         bordersColor: bordersColor || gameDefaults.bordersColor,
         canvasColor: canvasColor ||  gameDefaults.canvasColor,
@@ -112,7 +110,6 @@ function startGame() {
         speed: speed || gameDefaults.speed,
         withBorders: withBorders || gameDefaults.withBorders
     }
-    console.log('gameDefaults', gameDefaults, formValues(), gameValues);
     
     this.setup(gameValues);
     toggleButton('startGame', true);
