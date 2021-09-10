@@ -87,37 +87,29 @@ window.addEventListener('keydown', event => {
 });
 
 function startGame() {
-    const {
-        bordersColor,
-        canvasColor,
-        canvasHeight,
-        canvasScale,
-        canvasWidth,
-        foodColor,
-        snakeColor,
-        speed,
-        withBorders
-    } = formValues();
+    let gameValues = {}
+    const formValues = getFormValues();
 
-    const gameValues = {
-        bordersColor: bordersColor || gameDefaults.bordersColor,
-        canvasColor: canvasColor ||  gameDefaults.canvasColor,
-        canvasHeight: canvasHeight || gameDefaults.canvasHeight,
-        canvasScale: canvasScale || gameDefaults.canvasScale,
-        canvasWidth: canvasWidth || gameDefaults.canvasWidth,
-        foodColor: foodColor || gameDefaults.foodColor,
-        snakeColor: snakeColor || gameDefaults.snakeColor,
-        speed: speed || gameDefaults.speed,
-        withBorders: withBorders || gameDefaults.withBorders
-    }
+    formInputs.map(item => {
+        gameValues = {
+            ...gameValues,
+            [item]: formValues[item] || gameDefaults[item]
+        }
+    })
     
     this.setup(gameValues);
     toggleButton('startGame', true);
+    toggleButton('clearForm', false);
 }
 
 function stopGame() {
     clearInterval(this.snakeInterval);
     toggleButton('startGame', false);
+}
+
+function clearGame() {
+    clearBoard();
+    clearForm();
 }
 
 function clearBoard() {

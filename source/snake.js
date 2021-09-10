@@ -138,6 +138,9 @@ function Snake (props) {
     this.reset = function () {
         this.x = 30;
         this.y = 30;
+        this.xSpeed = this.scale * 1;
+        this.ySpeed = 0;
+        this.currentDirection = DIRECTIONS.RIGHT;
         this.total = 0;
         this.tail = [];
     }

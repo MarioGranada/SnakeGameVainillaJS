@@ -1,14 +1,3 @@
-const formInputs =[
-    'bordersColor',
-    'canvasColor',
-    'canvasHeight',
-    'canvasScale',
-    'canvasWidth',
-    'foodColor',
-    'snakeColor',
-    'speed'
-];
-
 const gameDefaults = {
     bordersColor: "#000000",
     canvasColor: "#FF4000",
@@ -21,11 +10,13 @@ const gameDefaults = {
     withBorders: false   
 }
 
+const formInputs = Object.keys(gameDefaults);
+
 const getElementByClassname = (className) => document.getElementsByClassName(className)[0];
 
-const formValues = () =>{
+const getFormValues = () =>{
     let valuesObj = {};
-    
+
     formInputs.map(item => {
         valuesObj = {...valuesObj, [item]: getElementByClassname(item).value};
     });
@@ -33,15 +24,11 @@ const formValues = () =>{
     return {...valuesObj, 'withBorders': getElementByClassname('withBorders').checked};
 }
 
-const clearGame = () => {
-    clearBoard();
-    clearForm();
-}
-
 const clearForm = () => {
     formInputs.map(item => {
-        getElementByClassname(item).value = '';
+        getElementByClassname(item).value = item.endsWith('Color') ? gameDefaults[item] : '';
     });
+    getElementByClassname('withBorders').checked = false;
 }
 
 const toggleButton = (buttonClassname, isDisabled) => {
