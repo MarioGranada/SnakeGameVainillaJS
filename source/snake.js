@@ -37,7 +37,7 @@ function Snake (props) {
 
     this.color = color;
 
-    this.draw = function() {
+    this.draw = function(context) {
         context.fillStyle = this.color;
 
         this.tail.map(item=> {
@@ -133,5 +133,12 @@ function Snake (props) {
             this.x === this.rightEdge - this.scale || 
             this.y === this.topEdge - this.scale || 
             this.y === this.bottomEdge - this.scale;
+    }
+
+    this.reset = function () {
+        this.x = 30;
+        this.y = 30;
+        this.total = 0;
+        this.tail = [];
     }
 }

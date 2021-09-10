@@ -1,7 +1,7 @@
 
-
 let snake;
 let food;
+let canvas;
 let context;
 let snakeInterval;
 
@@ -18,22 +18,22 @@ function setup(setupProps) {
         bordersColor
     } = setupProps;
 
-    const canvas = document.querySelector('.canvas');
-    context = canvas.getContext('2d');
+    this.canvas = getElementByClassname('canvas');
+    this.context = this.canvas.getContext('2d');
 
     canvasWidth = parseInt(canvasWidth);
     canvasHeight = parseInt(canvasHeight);
 
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    canvas.style['background-color'] = canvasColor;
+    this.canvas.width = canvasWidth;
+    this.canvas.height = canvasHeight;
+    this.canvas.style['background-color'] = canvasColor;
     
     const canvasLeftEdge = 0;
     const canvasRightEdge = canvasWidth;
     const canvasTopEdge = 0;
     const canvasBottomEdge = canvasHeight;
 
-    snake = new Snake({
+    this.snake = new Snake({
         topEdge: canvasTopEdge, 
         rightEdge: canvasRightEdge, 
         bottomEdge: canvasBottomEdge, 
@@ -44,17 +44,17 @@ function setup(setupProps) {
         color: snakeColor
     });
 
-    food = new Food({
+    this.food = new Food({
         scale: canvasScale,
         canvasWidth,
         canvasHeight,
         color: foodColor
     });
 
-    food.pickLocation();    
+    this.food.pickLocation();    
 
     this.snakeInterval = window.setInterval(() => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         withBorders && this.drawEdges(
             canvasScale,
             canvasTopEdge,
@@ -63,16 +63,16 @@ function setup(setupProps) {
             canvasLeftEdge,
             bordersColor
         );
-        food.draw();
-        snake.update();
-        snake.draw();
+        this.food.draw(this.context);
+        this.snake.update();
+        this.snake.draw(this.context);
 
-        if(snake.eat(food)) {
-            food.pickLocation();
-            this.updateScore()
+        if(this.snake.eat(this.food)) {
+            this.food.pickLocation();
+            this.updateScore();
         }
 
-        if(snake.checkCollision(withBorders)) {
+        if(this.snake.checkCollision(withBorders)) {
             this.stopGame();
         }
         
@@ -81,58 +81,72 @@ function setup(setupProps) {
 
 
 window.addEventListener('keydown', event => {
-    event.preventDefault();
+    event.key.startsWith('Arrow') && event.preventDefault();
     const newDirection = event.key.replace('Arrow', '');
-    snake && snake.changeDirection(newDirection);
+    this.snake && this.snake.changeDirection(newDirection, event);
 });
 
 function startGame() {
     const {
-        speed,
+        bordersColor,
+        canvasColor,
+        canvasHeight,
         canvasScale,
         canvasWidth,
-        canvasHeight,
-        withBorders,
-        canvasColor,
-        snakeColor,
         foodColor,
-        bordersColor
+        snakeColor,
+        speed,
+        withBorders
     } = formValues();
 
+    // console.log('gameDefaults', gameDefaults, formValues());
+
     const gameValues = {
-        speed: speed || 250,
-        canvasScale: canvasScale || 10,
-        canvasWidth: canvasWidth || 500,
-        canvasHeight: canvasHeight || 500,
-        withBorders: withBorders || false,
-        canvasColor: canvasColor ||  "#FFF000",
-        snakeColor: snakeColor || "#0FEF0B",
-        foodColor: foodColor || "#D9F505",
-        bordersColor: bordersColor || "#000000"
+        bordersColor: bordersColor || gameDefaults.bordersColor,
+        canvasColor: canvasColor ||  gameDefaults.canvasColor,
+        canvasHeight: canvasHeight || gameDefaults.canvasHeight,
+        canvasScale: canvasScale || gameDefaults.canvasScale,
+        canvasWidth: canvasWidth || gameDefaults.canvasWidth,
+        foodColor: foodColor || gameDefaults.foodColor,
+        snakeColor: snakeColor || gameDefaults.snakeColor,
+        speed: speed || gameDefaults.speed,
+        withBorders: withBorders || gameDefaults.withBorders
     }
+    console.log('gameDefaults', gameDefaults, formValues(), gameValues);
     
     this.setup(gameValues);
+    toggleButton('startGame', true);
 }
 
 function stopGame() {
     clearInterval(this.snakeInterval);
+    toggleButton('startGame', false);
+}
+
+function clearBoard() {
+    this.snake.reset();
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.food.pickLocation();
+    this.snake.draw(this.context);
+    this.food.draw(this.context);
+    this.updateScore();
 }
 
 function updateScore() {
-    document.querySelector('.scoreValue').innerHTML = snake.total * 100;
+    getElementByClassname('scoreValue').innerHTML = this.snake.total * 100;
 }
 
 function drawEdges(scale, topEdge, rightEdge, bottomEdge, leftEdge, bordersColor){
-    context.fillStyle = bordersColor;
+    this.context.fillStyle = bordersColor;
     // Top/Bottom Edge
     for(let i = scale; i < rightEdge - scale; i++) {
-        context.fillRect(i, topEdge, scale, scale);
-        context.fillRect(i, bottomEdge - scale, scale, scale);
+        this.context.fillRect(i, topEdge, scale, scale);
+        this.context.fillRect(i, bottomEdge - scale, scale, scale);
     }
 
     // Left/Right Edge
     for(let i = 0; i < bottomEdge; i++) {   
-        context.fillRect(rightEdge - scale, i, scale, scale);
-        context.fillRect(leftEdge, i, scale, scale);
+        this.context.fillRect(rightEdge - scale, i, scale, scale);
+        this.context.fillRect(leftEdge, i, scale, scale);
     }
 }
