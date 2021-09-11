@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button {
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.canvas {
+    border: 1px solid;
+}
+
+.fieldset {
+    margin: 8px;
+    align-items: space-between;
+}
+
+.gameOver {
+    display: none;
+    color: #FF4000;
+    margin-bottom: 12px;
+}
+
+.hideElement {
+    display: none;
+}
+
+.displayElement {
+    display: block;
+}
+
+.buttonsRow {
+    display: flex;
+    justify-items: space-between;
+}
+
+.scoreSection {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.pageHeader,
+.canvasWrapper,
+.formWrapper {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.headerContainer {
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 5px -5px #333;      
+}
+
+.footerContainer{
+    margin-top: 15px;
+    box-shadow: 0 -5px 5px -7px #333;
+    padding: 15px;
+}

@@ -4,71 +4,91 @@
     <head>
         <meta charset="UTF-8">
         <title>Snake Game - Mario Granada</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
-        <section class="canvas-wrapper">
+        <div class="headerContainer">
+            <h1 class="pageHeader">Snake Game - Vainilla JS</h1>
+        </div>
+        
+        <div class="scoreSection">
+            <h2>
+                Score: <span class="scoreValue">0</span>
+            </h2>
+            <br />
+            <h3 class="gameOver">Game Over :( - Please try again</h3>
+        </div>
+        <section class="canvasWrapper">
             <canvas class="canvas" height="" width=""></canvas>
         </section>
-        <section class="form-wrapper">
-            <div>
-                <p>
-                    Score: <span class="scoreValue">0</span>
-                </p>
-            </div>
+        <section class="formWrapper">
+            
             <form>
-                <div class="fieldset">
-                    <label>Speed</label>
-                    <input type="number" placeholder="default to 250" class="input inputNumber speed" />
+                <div class="formInputFields">
+                    <div class="fieldset">
+                        <label>Snake delay (ms)</label>
+                        <input type="number" placeholder="default to 250" class="input inputNumber speed" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Board Color</label>
+                        <input type="color" value="#FF4000" class="input inputColor canvasColor " />
+                    </div>
+                    <div class="fieldset">
+                        <label>Board Width (px)</label>
+                        <input type="number" placeholder="default 500" class="input inputNumber canvasWidth" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Board Height (px)</label>
+                        <input type="number" placeholder="default 500" class="input inputNumber canvasHeight" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Board Scale</label>
+                        <input type="number" placeholder="10" class="input inputNumber canvasScale" />
+                    </div>
+                    <div class="fieldset">
+                        <label>With borders?</label>
+                        <input type="checkbox" class="input inputCheckbox withBorders" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Snake Color</label>
+                        <input type="color" value="#0FEF0B" class="input inputColor snakeColor" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Food Color</label>
+                        <input type="color" value="#D9F505" class="input inputColor foodColor" />
+                    </div>
+                    <div class="fieldset">
+                        <label>Borders Color</label>
+                        <input type="color" class="input inputColor bordersColor" />
+                    </div>
                 </div>
-                <div class="fieldset">
-                    <label>Board Color</label>
-                    <input type="color" value="#FF4000" class="input inputColor canvasColor " />
+                <div class="buttonsRow">
+                    <div class="fieldset">
+                        <button type="button" class="button startGame" onclick="startGame()">start</button>
+    
+                    </div>
+                    <div class="fieldset">
+                        <button type="button" class="button stopGame" onclick="stopGame()">stop</button>
+                    </div>
+    
+                    <div class="fieldset">
+                        <button type="button" class="button clearForm" onclick="clearGame()" disabled>clear</button>
+                    </div>
                 </div>
-                <div class="fieldset">
-                    <label>Board Width</label>
-                    <input type="number" placeholder="default 500" class="input inputNumber canvasWidth" />
-                </div>
-                <div class="fieldset">
-                    <label>Board Height</label>
-                    <input type="number" placeholder="default 500" class="input inputNumber canvasHeight" />
-                </div>
-                <div class="fieldset">
-                    <label>Board Scale</label>
-                    <input type="number" placeholder="10" class="input inputNumber canvasScale" />
-                </div>
-                <div class="fieldset">
-                    <label>With borders?</label>
-                    <input type="checkbox" class="input input-checkbox withBorders" />
-                </div>
-                <div class="fieldset">
-                    <label>Snake Color</label>
-                    <input type="color" value="#0FEF0B" class="input inputColor snakeColor" />
-                </div>
-                <div class="fieldset">
-                    <label>Food Color</label>
-                    <input type="color" value="#D9F505" class="input inputColor foodColor" />
-                </div>
-                <div class="fieldset">
-                    <label>Borders Color</label>
-                    <input type="color" class="input inputColor bordersColor" />
-                </div>
-                <div class="fieldset">
-                    <button type="button" class="button startGame" onclick="startGame()">start</button>
-
-                </div>
-                <div class="fieldset">
-                    <button type="button" class="button stopGame" onclick="stopGame()">stop</button>
-                </div>
-
-                <div class="fieldset">
-                    <button type="button" class="button clearForm" onclick="clearGame()" disabled>clear</button>
-                </div>
+                
             </form>
         </section>
 
-        <footer>
-            <small> Author: Mario Granada</small>
+        <footer class="footerContainer">
+            <span>Author: </span>
+            <a
+              href="https://github.com/MarioGranada/SnakeGameVainillaJS"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mario Granada
+            </a>
         </footer>
 
 

@@ -74,6 +74,7 @@ function setup(setupProps) {
 
         if(this.snake.checkCollision(withBorders)) {
             this.stopGame();
+            addClassToElement('gameOver', 'displayElement');
         }
         
     }, parseInt(speed))
@@ -100,16 +101,27 @@ function startGame() {
     this.setup(gameValues);
     toggleButton('startGame', true);
     toggleButton('clearForm', false);
+    removeClassFromElement('gameOver','displayElement');
+    addClassToElement('formInputFields', 'hideElement');
 }
 
 function stopGame() {
     clearInterval(this.snakeInterval);
     toggleButton('startGame', false);
+    removeClassFromElement('formInputFields', 'hideElement');
 }
 
 function clearGame() {
     clearBoard();
     clearForm();
+}
+
+function addClassToElement(elementClassname, classname) {
+    getElementByClassname(elementClassname).classList.add(classname);
+}
+
+function removeClassFromElement(elementClassname, classname) {
+    getElementByClassname(elementClassname).classList.remove(classname);
 }
 
 function clearBoard() {
@@ -119,6 +131,7 @@ function clearBoard() {
     this.snake.draw(this.context);
     this.food.draw(this.context);
     this.updateScore();
+    removeClassFromElement('gameOver','displayElement')
 }
 
 function updateScore() {
