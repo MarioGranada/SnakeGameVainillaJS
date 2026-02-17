@@ -15,12 +15,21 @@ A customizable, classic Snake Game built entirely with Vanilla JavaScript, HTML,
 
 ## How to Play
 
+### Option 1: Play Online
+
+You can play the game directly in your browser without installing anything!
+[**Play Snake Game**](https://mariogranada.github.io/SnakeGameVainillaJS/) _(Link TBD)_
+
+### Option 2: Run Locally
+
+If you want to run the game on your own machine or modify the code:
+
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/MarioGranada/SnakeGameVainillaJS.git
     ```
 2.  **Open the game:**
-    Navigate to the `source` folder and open `index.html` in your web browser.
+    Navigate to the `docs` folder and open `index.html` in your web browser.
 
 3.  **Start the game:**
     - Use the configuration panel to set your desired options.
