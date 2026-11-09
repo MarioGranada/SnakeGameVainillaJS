@@ -1,75 +1,97 @@
-# Snake Game - Vanilla JS
+# Snake Game — Vanilla JavaScript
 
-A customizable, classic Snake Game built entirely with Vanilla JavaScript, HTML, and CSS.
+A classic Snake game built entirely with plain JavaScript, HTML, and CSS. Before a round starts, the player can configure the speed, board size and scale, colours, and whether the walls are deadly.
+
+The game runs directly in the browser with no build step, no framework, and no dependencies. The `docs/` folder is the publishable site and is ready for GitHub Pages.
 
 ## Features
 
-- **Classic Gameplay**: Navigate the snake to eat food and grow longer.
-- **Fully Customizable**: Tweak the game to your liking with extensive settings:
-  - **Speed**: Adjust the snake's speed (delay in milliseconds).
-  - **Visuals**: Customize colors for the board, snake, food, and borders.
-  - **Dimensions**: Set your preferred board width, height, and scale.
-  - **Borders**: Toggle board borders on or off for an extra challenge.
-- **Score Tracking**: Keep track of your score in real-time.
-- **Pause/Resume**: Stop and restart the game at any time.
+- Classic snake gameplay on an HTML5 canvas.
+- Configurable snake speed, board width and height, and cell scale.
+- Custom colours for the board, snake, food, and borders.
+- Optional wall collisions for an extra challenge.
+- Live score, pause/resume, game-over state, and restart.
+- Keyboard controls with the arrow keys.
 
-## How to Play
+## Tech stack
 
-### Option 1: Play Online
+| Layer | Technology |
+| --- | --- |
+| Language | Vanilla JavaScript (ES6) |
+| Rendering | HTML5 Canvas 2D |
+| Styling | CSS3 |
+| Hosting | GitHub Pages (`docs/`) |
 
-You can play the game directly in your browser without installing anything!
-[**Play Snake Game**](https://mariogranada.github.io/SnakeGameVainillaJS/) _(Link TBD)_
+## Project structure
 
-### Option 2: Run Locally
+```text
+SnakeGameVainillaJS/
+├── docs/                 # Publishable site (GitHub Pages root)
+│   ├── index.html        # Markup, score, and configuration form
+│   ├── styles.css        # Page and board styling
+│   ├── main.js           # Bootstrap and game loop
+│   ├── snake.js          # Snake model and movement
+│   ├── food.js           # Food placement
+│   └── controls.js       # Keyboard input
+├── LICENSE
+└── README.md
+```
 
-If you want to run the game on your own machine or modify the code:
+## Getting started
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/MarioGranada/SnakeGameVainillaJS.git
-    ```
-2.  **Open the game:**
-    Navigate to the `docs` folder and open `index.html` in your web browser.
+### Requirements
 
-3.  **Start the game:**
-    - Use the configuration panel to set your desired options.
-    - Click the **Start** button.
+- A modern browser with Canvas and ES6 support.
+- Optional: Python 3 or Node 18+ if you prefer a local static server. Opening `docs/index.html` directly also works.
 
-4.  **Controls:**
-    - use the **Arrow Keys** (Up, Down, Left, Right) to change the snake's direction.
+### 1. Install dependencies
 
-## Customization Options
+```bash
+# No dependencies or build step
+git clone https://github.com/MarioGranada/SnakeGameVainillaJS.git
+cd SnakeGameVainillaJS
+```
 
-- **Snake delay (ms)**: Controls how fast the snake moves. Lower numbers mean faster speed.
-- **Board Color**: Background color of the game area.
-- **Board Width/Height**: Size of the game canvas in pixels.
-- **Board Scale**: Size of the grid cells.
-- **With borders?**: Check this box to enable collision with the walls.
-- **Colors**: Set custom colors for the Snake, Food, and Borders.
+### 2. Run locally
 
-## Deployment to GitHub Pages
+**Option A — open the file directly**
 
-You can easily deploy this game to GitHub Pages so it can be played online.
+```bash
+open docs/index.html
+```
 
-### Option 1: Serve from `/docs` folder (Recommended for clean URL)
+On Linux use `xdg-open docs/index.html`; on Windows open the file from Explorer.
 
-1.  Rename the `source` folder to `docs`.
-2.  Commit and push the changes to GitHub.
-3.  Go to your repository on GitHub.
-4.  Navigate to **Settings** > **Pages**.
-5.  Under **Build and deployment** > **Source**, select **Deploy from a branch**.
-6.  Under **Branch**, select `main` (or `master`) and change the folder from `/ (root)` to `/docs`.
-7.  Click **Save**.
-8.  Your game will be live at `https://<your-username>.github.io/<repository-name>/`.
+**Option B — serve the folder locally**
 
-### Option 2: Deploy as is
+```bash
+python3 -m http.server 8000 --directory docs
+```
 
-1.  Push your code to GitHub.
-2.  Go to **Settings** > **Pages**.
-3.  Select **Deploy from a branch**, choose `main`, and keep folder as `/ (root)`.
-4.  Click **Save**.
-5.  Your game will be available at `https://<your-username>.github.io/<repository-name>/source/`.
+Open http://localhost:8000.
 
-## License
+A server is closer to the GitHub Pages environment, but is not required.
 
-[MIT](LICENSE)
+## How it works
+
+`docs/index.html` contains the canvas, score display, and the configuration form. The form values are read when a round starts.
+
+`main.js` wires the modules together and owns the game loop; `snake.js` and `food.js` hold the game entities; `controls.js` translates arrow-key presses into direction changes.
+
+There is no bundler or package manager. Every file is loaded as a classic script, so the order in `index.html` matters.
+
+## Deployment
+
+- Target: GitHub Pages, serving the `docs/` folder from `main`. This is the built-in Pages option and needs no workflow.
+- An optional GitHub Actions workflow can publish `docs/` with `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages` if the repository moves to workflow-based Pages.
+- The live URL will be `https://<user>.github.io/SnakeGameVainillaJS/`; the README link is still marked as TBD.
+
+## Notes and limitations
+
+- The game state lives only in memory; reloading the page resets the score.
+- Board dimensions and colours are read at the start of a round, so change them before pressing Start.
+- The online play link in the README is a placeholder until the Pages deployment is confirmed.
+
+---
+
+**Author:** Mario Granada
