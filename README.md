@@ -4,6 +4,14 @@ A classic Snake game built entirely with plain JavaScript, HTML, and CSS. Before
 
 The game runs directly in the browser with no build step, no framework, and no dependencies. The `docs/` folder is the publishable site and is ready for GitHub Pages.
 
+## Live demo
+
+| | |
+| --- | --- |
+| **Live site** | https://mariogranada.github.io/SnakeGameVainillaJS/ |
+| **Repository** | https://github.com/MarioGranada/SnakeGameVainillaJS |
+| **Portfolio summary** | Configurable Snake game in plain JavaScript, HTML and CSS — no framework, no build step — with adjustable speed, board size, colours and deadly-wall mode. |
+
 ## Features
 
 - Classic snake gameplay on an HTML5 canvas.
@@ -84,7 +92,7 @@ There is no bundler or package manager. Every file is loaded as a classic script
 
 - Target: GitHub Pages, serving the `docs/` folder from `main`. This is the built-in Pages option and needs no workflow.
 - An optional GitHub Actions workflow can publish `docs/` with `actions/configure-pages`, `actions/upload-pages-artifact`, and `actions/deploy-pages` if the repository moves to workflow-based Pages.
-- The live URL will be `https://<user>.github.io/SnakeGameVainillaJS/`; the README link is still marked as TBD.
+- **Live:** https://mariogranada.github.io/SnakeGameVainillaJS/ (Pages source `main` / `/docs`; every push to `main` redeploys it).
 
 ## Notes and limitations
 
